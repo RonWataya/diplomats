@@ -181,3 +181,39 @@ navLinks.forEach(link => {
         link.classList.add('active');
     });
 });
+
+//booking 
+document.getElementById("booking").addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Collect form data
+    const fullName = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const carType = document.getElementById("carType").value;
+    const pickUpDate = document.getElementById("pickUpDate").value;
+    const pickUpPlace = document.getElementById("pickUpPlace").value;
+    const dropOffPlace = document.getElementById("dropOffPlace").value;
+    const description = document.getElementById("description").value;
+
+    // Format the message for WhatsApp
+    const message = `
+        *Booking Request*
+        Full Name: ${fullName}
+        Email: ${email}
+        Phone: ${phone}
+        Car Type: ${carType}
+        Pick-Up Date: ${pickUpDate}
+        Pick-Up Place: ${pickUpPlace}
+        Drop-Off Place: ${dropOffPlace}
+        Description: ${description || "N/A"}
+    `.trim();
+
+    // Encode the message and create the WhatsApp link
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = "265888822061"; // Replace with your WhatsApp number (e.g., "265XXXXXXXXX")
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Redirect to WhatsApp
+    window.open(whatsappURL, "_blank");
+});
