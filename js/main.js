@@ -183,37 +183,33 @@ navLinks.forEach(link => {
 });
 
 //booking 
-document.getElementById("booking").addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent the default form submission
+document.getElementById('booking').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    
+    const formData = new FormData(this);
+    const formObject = Object.fromEntries(formData.entries());
 
-    // Collect form data
-    const fullName = document.getElementById("fullName").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const carType = document.getElementById("carType").value;
-    const pickUpDate = document.getElementById("pickUpDate").value;
-    const pickUpPlace = document.getElementById("pickUpPlace").value;
-    const dropOffPlace = document.getElementById("dropOffPlace").value;
-    const description = document.getElementById("description").value;
+    try {
+        const response = await fetch('https://diplomatscarhire.com:1124/booking', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formObject),
+        });
 
-    // Format the message for WhatsApp
-    const message = `
-        *Booking Request*
-        Full Name: ${fullName}
-        Email: ${email}
-        Phone: ${phone}
-        Car Type: ${carType}
-        Pick-Up Date: ${pickUpDate}
-        Pick-Up Place: ${pickUpPlace}
-        Drop-Off Place: ${dropOffPlace}
-        Description: ${description || "N/A"}
-    `.trim();
+        if (response.ok) {
+            const messageElement = document.getElementById('submissionMessage');
+            messageElement.style.display = 'block'; // Show the success message
+            this.reset();
 
-    // Encode the message and create the WhatsApp link
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "265888822061"; // Replace with your WhatsApp number (e.g., "265XXXXXXXXX")
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-    // Redirect to WhatsApp
-    window.open(whatsappURL, "_blank");
+            // Hide the message after 5 seconds (5000ms)
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 5000);
+        } else {
+            alert('Failed to submit booking details. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while submitting your details.');
+    }
 });
