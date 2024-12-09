@@ -185,12 +185,12 @@ navLinks.forEach(link => {
 //booking 
 document.getElementById('booking').addEventListener('submit', async function (event) {
     event.preventDefault();
-    
+    const api = '/api';
     const formData = new FormData(this);
     const formObject = Object.fromEntries(formData.entries());
 
     try {
-        const response = await fetch('http://diplomatscarhire.com:1124/booking', {
+        const response = await fetch( `${api}/booking`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formObject),
