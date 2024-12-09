@@ -182,34 +182,36 @@ navLinks.forEach(link => {
     });
 });
 
-//booking 
+// Booking Form Submission
 document.getElementById('booking').addEventListener('submit', async function (event) {
-    event.preventDefault();
-    const api = '/api';
-    const formData = new FormData(this);
-    const formObject = Object.fromEntries(formData.entries());
+    event.preventDefault(); // Prevent form's default submission behavior
+
+    const formData = new FormData(this); // Get form data
+    const formObject = Object.fromEntries(formData.entries()); // Convert form data to object
 
     try {
-        const response = await fetch( `${api}/booking`, {
+        const response = await fetch('/booking', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formObject),
+            body: JSON.stringify(formObject), // Send form data as JSON
         });
 
         if (response.ok) {
             const messageElement = document.getElementById('submissionMessage');
             messageElement.style.display = 'block'; // Show the success message
-            this.reset();
+            this.reset(); // Reset the form
 
-            // Hide the message after 5 seconds (5000ms)
+            // Hide the success message after 5 seconds
             setTimeout(() => {
                 messageElement.style.display = 'none';
             }, 5000);
         } else {
+            const errorText = await response.text(); // Fetch error details
+            console.error('Server Error:', errorText);
             alert('Failed to submit booking details. Please try again.');
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred while submitting your details.');
+        console.error('Network Error:', error);
+        alert('An error occurred while submitting your details. Please check your connection and try again.');
     }
 });

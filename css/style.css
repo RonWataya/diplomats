@@ -1066,6 +1066,10 @@
     color: #007bff;
     text-decoration: none;
 }
+#submissionMessage {
+    display: none;
+    color: green;
+}
 
 /*** copyright end ***/
 
