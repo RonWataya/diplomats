@@ -190,7 +190,7 @@ document.getElementById('booking').addEventListener('submit', async function (ev
     const formObject = Object.fromEntries(formData.entries()); // Convert form data to object
 
     try {
-        const response = await fetch('/booking', {
+        const response = await fetch('https://diplomatscarhire.com/booking', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formObject), // Send form data as JSON
