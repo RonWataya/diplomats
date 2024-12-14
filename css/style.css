@@ -1071,6 +1071,17 @@
     color: green;
 }
 
+.logo-item {
+    text-align: center;
+    padding: 15px;
+}
+.logo-item img {
+    max-width: 150px; /* Adjust size as needed */
+    height: auto;
+    margin: auto;
+    display: block;
+}
+
 /*** copyright end ***/
 
 

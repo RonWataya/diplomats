@@ -182,6 +182,21 @@ navLinks.forEach(link => {
     });
 });
 
+$(document).ready(function () {
+    $(".logo-carousel").owlCarousel({
+        loop: true,
+        margin: 30,
+        nav: false,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        responsive: {
+            0: { items: 2 },
+            600: { items: 3 },
+            1000: { items: 5 }
+        }
+    });
+});
+
 // Booking Form Submission
 document.getElementById('booking').addEventListener('submit', async function (event) {
     event.preventDefault(); // Prevent form's default submission behavior
