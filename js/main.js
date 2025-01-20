@@ -159,6 +159,7 @@ I would like to book a car with the following details:
 - Dropoff Location: ${dropoffLocation}
 - Pickup Date & Time: ${pickupDate} at ${pickupTime}
 - Dropoff Date & Time: ${dropoffDate} at ${dropoffTime}
+- Drive location: ${area}
 
 Thank you!`;
 
