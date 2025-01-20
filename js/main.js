@@ -145,6 +145,7 @@ function sendBookingToWhatsApp() {
     const pickupTime = document.getElementById('pickupTime').value;
     const dropoffDate = document.getElementById('dropoffDate').value;
     const dropoffTime = document.getElementById('dropoffTime').value;
+    const area = document.getElementById('area').value;
 
     if (!carType || carType === "Select Your Car type" || !pickupLocation || !dropoffLocation || !pickupDate || !dropoffDate) {
         alert('Please fill all fields correctly.');

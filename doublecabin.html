@@ -220,6 +220,13 @@
                                 <input type="text" id="dropOffPlace" name="dropOffPlace" class="form-control" placeholder="Enter drop-off place" required>
                             </div>
                             <div class="mb-3">
+                                <label for="area" class="form-label">Location for the drive</label>
+                                <select id="area" name="area" class="form-select" required>
+                                    <option value="Within the city">Within the city</option>
+                                    <option value="Outside of the city">Outside of the city</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>
                                 <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter any additional details"></textarea>
                             </div>
